@@ -1,0 +1,200 @@
+import { useState, useEffect, useRef } from "react";
+const C={cream:"#FAF7F2",warmWhite:"#F5F0E8",paper:"#EDE8DF",bg:"#080808",surface:"#111111",card:"#161616",warm:"#1C1A18",green:"#CCFF00",pink:"#E6007E",pinkPastel:"#FF7EB3",white:"#FFFFFF",textDark:"#1A1A1A",textMid:"#4A4A4A",textLight:"#D4D0CA",gray:"#999999",dim:"#777777",dimmer:"#2a2a2a",border:"#E0D8CC"};
+const T={es:{nav:"Hablemos",htag:"AGENCIA CREATIVA · MIAMI",h1a:"Tu marca tiene una",h1b:"historia increíble.",h1c:"Vamos a",h1d:"contarla.",hp:"Contenido con intención, estrategia y estética para marcas que quieren conectar. Branding, social media y producción audiovisual — todo desde Miami.",cta:"Quiero empezar →",csub:"Sin compromiso. Solo una conversación.",sa:"+10",sal:"años de experiencia",sb:"3",sbl:"servicios integrados",sc:"∞",scl:"compromiso con tu marca",stag:"LO QUE HACEMOS",sh2a:"Tres caminos para hacer",sh2b:"brillar",sh2c:"lo que haces",bn:"Branding",bd:"La base de todo. Identidad visual, estrategia de marca y presencia web para que salgas al mundo con confianza desde el día uno.",bdt:"Logo · Paleta · Tipografía · Aplicaciones · Landing page · Guía de marca",sn:"Social Media",sd:"Estrategia, creación y gestión completa de contenido. Desde la idea hasta la publicación — todo para que tu marca conecte cada mes.",sdt:"Estrategia · Content day · 18–26 piezas · Publicación · Gestión · Reporte",fd:"Producción audiovisual que revela la esencia de lo que haces. Brand films, content days, testimoniales cinematográficos y cobertura de eventos.",fp:"Cada proyecto es único",fc:"Cotización personalizada →",ttag:"RESULTADOS QUE SE SIENTEN",th2a:"Lo que dicen quienes ya",th2b:"brillan",t1:"Lumma entendió nuestra visión desde el primer día. El contenido que creamos juntos genera resultados reales.",t1t:"Social Media · Miami",t2:"Por fin tenemos una identidad que nos representa. Cada vez que alguien ve nuestra marca, nos dicen: se ve profesional.",t2t:"Branding · Doral",t3:"El brand film capturó exactamente lo que somos. Fue un antes y un después para nuestra comunicación.",t3t:"Lumma Films · Brickell",ptag:"EL CAMINO JUNTOS",ph2a:"4 pasos para",ph2b:"encender",ph2c:"lo que construyes",p1:"Conversamos",p1d:"Nos cuentas tu visión. Entendemos lo que haces, tu audiencia y tus metas.",p2:"Diseñamos juntos",p2d:"Co-creamos la estrategia y el plan de contenido alineado a tus objetivos.",p3:"Producimos",p3d:"Cada pieza con intención, estética y calidad. Tú apruebas, nosotros ejecutamos.",p4:"Crecemos",p4d:"Medimos resultados, aprendemos y escalamos lo que funciona. Siempre juntos.",atag:"SOBRE LUMMA",asub:"ESTUDIO CREATIVO · MIAMI, FL",a1:"Lumma nació de una convicción: todo proyecto — sin importar su tamaño — merece contenido que lo represente con orgullo.",a2:"Con más de 10 años de experiencia en marketing, producción audiovisual y estrategia digital, acompañamos a marcas a encontrar su voz, contar su historia y conectar con las personas correctas.",a3:"Combinamos creatividad humana con tecnología de vanguardia. Usamos IA, automatización y procesos inteligentes para entregar resultados profesionales con agilidad.",aq1:"La luz ya está en tu marca.",aq2:"Vamos a encenderla.",ftag:"PREGUNTAS FRECUENTES",fh2a:"Lo que probablemente te estás",fh2b:"preguntando",f1q:"¿Trabajan solo con empresas grandes?",f1a:"No. Trabajamos con proyectos de todos los tamaños. Lo que importa es que valores el contenido como herramienta de crecimiento.",f2q:"¿Puedo empezar solo con un servicio?",f2a:"Claro. Muchos clientes empiezan con branding y luego suman social media o producción audiovisual cuando están listos.",f3q:"¿Cuánto tiempo toma ver resultados?",f3a:"Los primeros 30 días son de construcción. Entre el mes 2 y 3 empiezas a ver consistencia en tu presencia y los primeros leads.",f4q:"¿Qué incluye el branding?",f4a:"Estrategia de marca, logo, paleta, tipografía, aplicaciones para redes y papelería, landing page y guía de marca completa.",ch2a:"Lo que construyes merece",ch2b:"brillar.",cp:"El primer paso es contarnos sobre lo que haces. Sin compromiso, sin presión. Solo queremos conocer tu historia.",cbtn:"Comencemos juntos →",csub2:"También puedes escribirnos en @lummastudio_"},en:{nav:"Let's talk",htag:"CREATIVE AGENCY · MIAMI",h1a:"Your brand has an",h1b:"incredible story.",h1c:"Let's",h1d:"tell it.",hp:"Content with intention, strategy, and aesthetics for brands that want to connect. Branding, social media, and video production — all from Miami.",cta:"Get started →",csub:"No commitment. Just a conversation.",sa:"+10",sal:"years of experience",sb:"3",sbl:"integrated services",sc:"∞",scl:"commitment to your brand",stag:"WHAT WE DO",sh2a:"Three ways to make",sh2b:"shine",sh2c:"what you do",bn:"Branding",bd:"The foundation of everything. Visual identity, brand strategy, and web presence so you can launch with confidence from day one.",bdt:"Logo · Palette · Typography · Applications · Landing page · Brand guide",sn:"Social Media",sd:"Full content strategy, creation, and management. From idea to publication — everything so your brand connects every month.",sdt:"Strategy · Content day · 18–26 pieces · Publishing · Management · Report",fd:"Video production that reveals the essence of what you do. Brand films, content days, cinematic testimonials, and event coverage.",fp:"Every project is unique",fc:"Custom quote →",ttag:"RESULTS THAT MATTER",th2a:"What those who already",th2b:"shine",t1:"Lumma understood our vision from day one. The content we create together drives real results.",t1t:"Social Media · Miami",t2:"We finally have an identity that represents us. Every time someone sees our brand, they say: it looks professional.",t2t:"Branding · Doral",t3:"The brand film captured exactly who we are. It was a before and after for our communication.",t3t:"Lumma Films · Brickell",ptag:"THE JOURNEY TOGETHER",ph2a:"4 steps to",ph2b:"ignite",ph2c:"what you're building",p1:"We talk",p1d:"You share your vision. We understand what you do, your audience, and your goals.",p2:"We design together",p2d:"We co-create the strategy and content plan aligned to your objectives.",p3:"We produce",p3d:"Every piece with intention, aesthetics, and quality. You approve, we execute.",p4:"We grow",p4d:"We measure results, learn, and scale what works. Always together.",atag:"ABOUT LUMMA",asub:"CREATIVE STUDIO · MIAMI, FL",a1:"Lumma was born from a conviction: every project — no matter its size — deserves content that represents it with pride.",a2:"With over 10 years of experience in marketing, video production, and digital strategy, we help brands find their voice, tell their story, and connect with the right people.",a3:"We combine human creativity with cutting-edge technology. We use AI, automation, and smart processes to deliver professional results with agility.",aq1:"The light is already in your brand.",aq2:"Let's turn it on.",ftag:"FAQ",fh2a:"What you're probably",fh2b:"wondering",f1q:"Do you only work with big companies?",f1a:"No. We work with projects of all sizes. What matters is that you value content as a growth tool.",f2q:"Can I start with just one service?",f2a:"Of course. Many clients start with branding and add social media or video production when they're ready.",f3q:"How long does it take to see results?",f3a:"The first 30 days are for building. Between months 2 and 3 you start seeing consistency and your first organic leads.",f4q:"What does branding include?",f4a:"Brand strategy, logo, palette, typography, social media and stationery applications, landing page, and a complete brand guide.",ch2a:"What you're building deserves to",ch2b:"shine.",cp:"The first step is telling us what you do. No commitment, no pressure. We just want to hear your story.",cbtn:"Let's start →",csub2:"You can also reach us at @lummastudio_"}};
+
+function Logo({dark}){const fg=dark?C.white:C.textDark;return <svg width={120} height={26} viewBox="0 0 320 60"><circle cx="20" cy="30" r="13" fill={C.green}/><circle cx="42" cy="30" r="13" fill={C.pink}/><circle cx="31" cy="30" r="5.5" fill={dark?C.bg:C.cream}/><text x="72" y="44" fontFamily="'Plus Jakarta Sans',sans-serif" fontSize="42" fontWeight="700" letterSpacing="6" fill={fg}>LUMMA</text></svg>}
+function FI({children,d=0}){const r=useRef(null);const[v,sV]=useState(false);useEffect(()=>{const o=new IntersectionObserver(([e])=>{if(e.isIntersecting)sV(true)},{threshold:.08});if(r.current)o.observe(r.current);return()=>o.disconnect()},[]);return <div ref={r} style={{opacity:v?1:0,transform:v?"translateY(0)":"translateY(20px)",transition:`all .7s cubic-bezier(.22,1,.36,1) ${d}ms`}}>{children}</div>}
+function Tag({text}){return <span style={{display:"inline-block",fontSize:11,fontWeight:700,letterSpacing:3,color:C.green,backgroundColor:C.bg,padding:"5px 12px",borderRadius:6,marginBottom:8}}>{text}</span>}
+
+function HSForm(){
+  const ref=useRef(null);
+  useEffect(()=>{
+    if(!ref.current)return;
+    const s=document.createElement("script");
+    s.src="https://js-na2.hsforms.net/forms/embed/246101311.js";
+    s.defer=true;
+    s.onload=()=>{};
+    ref.current.appendChild(s);
+    const d=document.createElement("div");
+    d.className="hs-form-frame";
+    d.setAttribute("data-region","na2");
+    d.setAttribute("data-form-id","4b444e76-b047-42e6-aef1-fa2b90695a9b");
+    d.setAttribute("data-portal-id","246101311");
+    ref.current.appendChild(d);
+    return()=>{if(ref.current)ref.current.innerHTML=""};
+  },[]);
+  return <div ref={ref} style={{minHeight:400}}/>;
+}
+
+function Modal({open,onClose}){
+  if(!open)return null;
+  return(
+    <div onClick={onClose} style={{position:"fixed",inset:0,zIndex:50,display:"flex",alignItems:"flex-end",justifyContent:"center",backgroundColor:"rgba(0,0,0,.6)",backdropFilter:"blur(4px)"}}>
+      <div onClick={e=>e.stopPropagation()} style={{width:"100%",maxWidth:480,maxHeight:"92vh",overflowY:"auto",backgroundColor:C.cream,borderRadius:"20px 20px 0 0"}}>
+        <div style={{padding:"24px 24px 0",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+          <div>
+            <p style={{fontSize:20,fontWeight:700,color:C.textDark,lineHeight:1.3}}>Cuéntanos sobre tu{" "}<span style={{fontFamily:"'Instrument Serif',serif",fontStyle:"italic",fontWeight:400,color:C.pink}}>proyecto</span></p>
+            <p style={{fontSize:12,color:C.dim,marginTop:4}}>Te contactamos en menos de 24 horas.</p>
+          </div>
+          <button onClick={onClose} style={{fontSize:18,color:C.dim,background:"none",border:"none",cursor:"pointer",padding:4,flexShrink:0}}>✕</button>
+        </div>
+        <div style={{padding:"16px 24px 32px"}}>
+          <HSForm/>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function App(){
+  const[fo,sF]=useState(false);
+  const[sc,sS]=useState(false);
+  const[lang,sL]=useState("es");
+  useEffect(()=>{const b=navigator.language||"es";sL(b.startsWith("en")?"en":"es")},[]);
+  useEffect(()=>{const h=()=>sS(window.scrollY>60);window.addEventListener("scroll",h);return()=>window.removeEventListener("scroll",h)},[]);
+  useEffect(()=>{
+    if(typeof window!=="undefined"&&!window.fbq){
+      const f=function(){f.callMethod?f.callMethod.apply(f,arguments):f.queue.push(arguments)};
+      window.fbq=f;f.push=f;f.loaded=true;f.version="2.0";f.queue=[];
+      const s=document.createElement("script");s.async=true;s.src="https://connect.facebook.net/en_US/fbevents.js";document.head.appendChild(s);
+      window.fbq("init","1023247670057801");window.fbq("track","PageView");
+    }
+  },[]);
+  const t=T[lang];
+  const ol=lang==="es"?"EN":"ES";
+  const tl=()=>sL(lang==="es"?"en":"es");
+  const of2=()=>{sF(true);if(window.fbq)window.fbq("track","Lead")};
+  const B=({text,dark})=><button onClick={of2} style={{width:"100%",padding:"14px 28px",borderRadius:12,fontSize:14,fontWeight:700,cursor:"pointer",border:"none",backgroundColor:dark?C.green:C.bg,color:dark?C.bg:C.green,fontFamily:"'Plus Jakarta Sans',sans-serif"}}>{text||t.cta}</button>;
+
+  // Process steps: alternate between green-on-dark-pill and pink
+  const steps=[
+    {n:"01",ti:t.p1,d:t.p1d,pill:true},
+    {n:"02",ti:t.p2,d:t.p2d,pill:false},
+    {n:"03",ti:t.p3,d:t.p3d,pill:true},
+    {n:"04",ti:t.p4,d:t.p4d,pill:false}
+  ];
+
+  // Pricing: fix /mes to /month in EN
+  const smSpark = lang==="en" ? "$1,800/mo" : "$1,800/mes";
+  const smBlaze = lang==="en" ? "$2,500/mo" : "$2,500/mes";
+
+  return(
+    <>
+      <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet"/>
+      <Modal open={fo} onClose={()=>sF(false)}/>
+      <div style={{fontFamily:"'Plus Jakarta Sans',sans-serif",backgroundColor:C.cream}}>
+
+        {/* NAV */}
+        <nav style={{position:"sticky",top:0,zIndex:40,padding:"12px 20px",display:"flex",alignItems:"center",justifyContent:"space-between",backgroundColor:sc?"rgba(250,247,242,.92)":C.cream,backdropFilter:sc?"blur(12px)":"none",borderBottom:sc?`1px solid ${C.border}`:"1px solid transparent",transition:"all .3s"}}>
+          <Logo/>
+          <div style={{display:"flex",alignItems:"center",gap:10}}>
+            <button onClick={tl} style={{fontSize:11,fontWeight:600,padding:"6px 12px",borderRadius:14,backgroundColor:"transparent",color:C.textMid,border:`1px solid ${C.border}`,cursor:"pointer",fontFamily:"'Plus Jakarta Sans',sans-serif"}}>{ol}</button>
+            <button onClick={of2} style={{fontSize:12,fontWeight:700,padding:"8px 18px",borderRadius:20,backgroundColor:C.bg,color:C.green,border:"none",cursor:"pointer",fontFamily:"'Plus Jakarta Sans',sans-serif"}}>{t.nav}</button>
+          </div>
+        </nav>
+
+        {/* HERO */}
+        <section style={{padding:"48px 20px 40px",backgroundColor:C.cream}}>
+          <FI><p style={{fontSize:11,fontWeight:700,letterSpacing:3,color:C.pink,marginBottom:16}}>{t.htag}</p><h1 style={{fontSize:36,fontWeight:800,lineHeight:1.15,color:C.textDark,marginBottom:8}}>{t.h1a}</h1><h1 style={{fontSize:36,lineHeight:1.15,marginBottom:8}}><span style={{fontFamily:"'Instrument Serif',serif",fontStyle:"italic",fontWeight:400,color:C.pink}}>{t.h1b}</span></h1><h1 style={{fontSize:36,fontWeight:800,lineHeight:1.15,color:C.textDark,marginBottom:24}}>{t.h1c} <span style={{fontFamily:"'Instrument Serif',serif",fontStyle:"italic",fontWeight:400,color:C.pink}}>{t.h1d}</span></h1></FI>
+          <FI d={100}><p style={{fontSize:15,lineHeight:1.65,color:C.textMid,marginBottom:24}}>{t.hp}</p></FI>
+          <FI d={200}><div style={{borderRadius:16,overflow:"hidden"}}><img src="/images/hero-branding.jpg" alt="Lumma Studio" style={{width:"100%",height:"auto",display:"block"}}/></div></FI>
+          <FI d={300}><div style={{marginTop:24}}><B/></div><p style={{fontSize:11,textAlign:"center",color:C.dim,marginTop:10}}>{t.csub}</p></FI>
+        </section>
+
+        {/* STATS */}
+        <section style={{padding:"24px 20px",backgroundColor:C.bg}}>
+          <FI><div style={{display:"flex",justifyContent:"space-around",textAlign:"center"}}>{[{n:t.sa,l:t.sal},{n:t.sb,l:t.sbl},{n:t.sc,l:t.scl}].map((s,i)=><div key={i}><p style={{fontSize:24,fontWeight:800,color:C.green}}>{s.n}</p><p style={{fontSize:10,color:C.gray,marginTop:2}}>{s.l}</p></div>)}</div></FI>
+        </section>
+
+        {/* SERVICIOS */}
+        <section style={{padding:"56px 20px",backgroundColor:C.cream}}>
+          <FI><Tag text={t.stag}/><h2 style={{fontSize:26,fontWeight:700,lineHeight:1.25,color:C.textDark,marginBottom:32,marginTop:8}}>{t.sh2a}{" "}<span style={{fontFamily:"'Instrument Serif',serif",fontStyle:"italic",fontWeight:400,color:C.pink}}>{t.sh2b}</span>{" "}{t.sh2c}</h2></FI>
+          {[
+            {i:"✦",n:t.bn,d:t.bd,dt:t.bdt,b:C.green,s:"$699",bl:"$1,500"},
+            {i:"📱",n:t.sn,d:t.sd,dt:t.sdt,b:C.pinkPastel,s:smSpark,bl:smBlaze}
+          ].map(v=>(
+            <FI key={v.n}><div style={{marginBottom:20,padding:24,borderRadius:16,backgroundColor:C.white,border:`1px solid ${C.border}`,position:"relative",overflow:"hidden"}}>
+              <div style={{position:"absolute",top:0,left:0,right:0,height:3,backgroundColor:v.b}}/>
+              <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:12}}><span style={{fontSize:18}}>{v.i}</span><p style={{fontSize:18,fontWeight:700,color:C.textDark}}>{v.n}</p></div>
+              <p style={{fontSize:14,lineHeight:1.6,color:C.textMid,marginBottom:12}}>{v.d}</p>
+              <p style={{fontSize:11,color:C.dim,marginBottom:16,lineHeight:1.5}}>{v.dt}</p>
+              <div style={{display:"flex",gap:10}}>
+                <div style={{flex:1,padding:"14px 12px",borderRadius:12,textAlign:"center",backgroundColor:C.bg}}><p style={{fontSize:10,fontWeight:700,color:C.green,marginBottom:4}}>SPARK</p><p style={{fontSize:20,fontWeight:800,color:C.white}}>{v.s}</p></div>
+                <div style={{flex:1,padding:"14px 12px",borderRadius:12,textAlign:"center",backgroundColor:C.warm}}><p style={{fontSize:10,fontWeight:700,color:C.pinkPastel,marginBottom:4}}>BLAZE</p><p style={{fontSize:20,fontWeight:800,color:C.white}}>{v.bl}</p></div>
+              </div>
+            </div></FI>
+          ))}
+          <FI><div style={{padding:24,borderRadius:16,backgroundColor:C.white,border:`1px solid ${C.border}`,position:"relative",overflow:"hidden"}}>
+            <div style={{position:"absolute",top:0,left:0,right:0,height:3,background:`linear-gradient(90deg,${C.green},${C.pink})`}}/>
+            <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:12}}><span style={{fontSize:18}}>🎬</span><p style={{fontSize:18,fontWeight:700,color:C.textDark}}>Lumma <span style={{fontFamily:"'Instrument Serif',serif",fontStyle:"italic",fontWeight:400,color:C.pink}}>Films</span></p></div>
+            <p style={{fontSize:14,lineHeight:1.6,color:C.textMid,marginBottom:12}}>{t.fd}</p>
+            <div style={{padding:"14px 16px",borderRadius:12,textAlign:"center",backgroundColor:C.cream,border:`1px solid ${C.border}`}}><p style={{fontSize:13,color:C.textMid}}>{t.fp}</p><p style={{fontSize:13,fontWeight:700,color:C.pink,marginTop:4}}>{t.fc}</p></div>
+          </div></FI>
+          <FI><div style={{marginTop:24}}><B/></div></FI>
+        </section>
+
+        {/* TESTIMONIOS */}
+        <section style={{padding:"56px 20px",backgroundColor:C.bg}}>
+          <FI><p style={{fontSize:11,fontWeight:700,letterSpacing:3,color:C.pinkPastel,marginBottom:8}}>{t.ttag}</p><h2 style={{fontSize:24,fontWeight:700,color:C.white,marginBottom:28}}>{t.th2a}{" "}<span style={{fontFamily:"'Instrument Serif',serif",fontStyle:"italic",fontWeight:400,color:C.pinkPastel}}>{t.th2b}</span></h2></FI>
+          <FI d={100}><div style={{display:"flex",flexDirection:"column",gap:14}}>{[{q:t.t1,tg:t.t1t,a:C.green},{q:t.t2,tg:t.t2t,a:C.pinkPastel},{q:t.t3,tg:t.t3t,a:C.green}].map((x,i)=><div key={i} style={{padding:20,borderRadius:14,backgroundColor:C.card,borderLeft:`3px solid ${x.a}`}}><p style={{fontSize:14,lineHeight:1.6,color:C.textLight,fontFamily:"'Instrument Serif',serif",fontStyle:"italic",marginBottom:10}}>"{x.q}"</p><p style={{fontSize:11,color:C.dim}}>{x.tg}</p></div>)}</div></FI>
+        </section>
+
+        {/* PROCESO — alternating green pill + pink */}
+        <section style={{padding:"56px 20px",backgroundColor:C.warmWhite}}>
+          <FI><Tag text={t.ptag}/><h2 style={{fontSize:26,fontWeight:700,lineHeight:1.25,color:C.textDark,marginBottom:28,marginTop:8}}>{t.ph2a}{" "}<span style={{fontFamily:"'Instrument Serif',serif",fontStyle:"italic",fontWeight:400,color:C.pink}}>{t.ph2b}</span>{" "}{t.ph2c}</h2></FI>
+          {steps.map((s,i)=>(
+            <FI key={s.n} d={i*60}>
+              <div style={{display:"flex",gap:16,alignItems:"flex-start",padding:16,marginBottom:10,borderRadius:14,backgroundColor:C.white,border:`1px solid ${C.border}`}}>
+                {s.pill
+                  ? <span style={{fontSize:28,fontWeight:800,flexShrink:0,color:C.bg,backgroundColor:C.green,borderRadius:8,padding:"2px 10px",lineHeight:1.3}}>{s.n}</span>
+                  : <span style={{fontSize:28,fontWeight:800,flexShrink:0,color:C.pink}}>{s.n}</span>
+                }
+                <div><p style={{fontSize:15,fontWeight:700,color:C.textDark,marginBottom:4}}>{s.ti}</p><p style={{fontSize:13,lineHeight:1.55,color:C.textMid}}>{s.d}</p></div>
+              </div>
+            </FI>
+          ))}
+        </section>
+
+        {/* ABOUT */}
+        <section style={{padding:"56px 20px",backgroundColor:C.cream}}>
+          <FI><p style={{fontSize:11,fontWeight:700,letterSpacing:3,color:C.pink,marginBottom:8}}>{t.atag}</p><p style={{fontSize:11,letterSpacing:2,color:C.dim,marginBottom:20}}>{t.asub}</p></FI>
+          <FI d={100}><div style={{marginBottom:20,borderRadius:16,overflow:"hidden",border:`1px solid ${C.border}`}}><img src="/images/team-lumma.jpg" alt="Equipo Lumma" style={{width:"100%",height:"auto",display:"block"}}/></div></FI>
+          <FI d={200}><p style={{fontSize:14,lineHeight:1.7,color:C.textMid,marginBottom:14}}>{t.a1}</p><p style={{fontSize:14,lineHeight:1.7,color:C.textMid,marginBottom:14}}>{t.a2}</p><p style={{fontSize:14,lineHeight:1.7,color:C.textMid,marginBottom:24}}>{t.a3}</p></FI>
+          <FI d={300}><div style={{padding:20,borderRadius:14,backgroundColor:C.bg,borderLeft:`3px solid ${C.green}`}}><p style={{fontSize:20,fontWeight:700,lineHeight:1.3,color:C.white}}>{t.aq1}</p><p style={{fontSize:20,lineHeight:1.3}}><span style={{fontFamily:"'Instrument Serif',serif",fontStyle:"italic",fontWeight:400,color:C.green}}>{t.aq2}</span></p></div></FI>
+        </section>
+
+        {/* FAQ */}
+        <section style={{padding:"56px 20px",backgroundColor:C.warmWhite}}>
+          <FI><p style={{fontSize:11,fontWeight:700,letterSpacing:3,color:C.pink,marginBottom:8}}>{t.ftag}</p><h2 style={{fontSize:22,fontWeight:700,color:C.textDark,marginBottom:24}}>{t.fh2a}{" "}<span style={{fontFamily:"'Instrument Serif',serif",fontStyle:"italic",fontWeight:400,color:C.pink}}>{t.fh2b}</span></h2></FI>
+          <FI d={100}><div style={{display:"flex",flexDirection:"column",gap:10}}>{[{q:t.f1q,a:t.f1a},{q:t.f2q,a:t.f2a},{q:t.f3q,a:t.f3a},{q:t.f4q,a:t.f4a}].map((f,i)=><div key={i} style={{padding:18,borderRadius:14,backgroundColor:C.white,border:`1px solid ${C.border}`}}><p style={{fontSize:14,fontWeight:700,color:C.textDark,marginBottom:6}}>{f.q}</p><p style={{fontSize:13,lineHeight:1.55,color:C.textMid}}>{f.a}</p></div>)}</div></FI>
+        </section>
+
+        {/* CTA FINAL */}
+        <section style={{padding:"64px 20px",backgroundColor:C.bg,textAlign:"center",position:"relative",overflow:"hidden"}}>
+          <div style={{position:"absolute",inset:0,background:`radial-gradient(ellipse at 40% 40%,${C.green}08 0%,transparent 50%),radial-gradient(ellipse at 70% 70%,${C.pink}06 0%,transparent 50%)`}}/>
+          <div style={{position:"relative",zIndex:1}}>
+            <FI>
+              <svg width={60} height={40} viewBox="0 0 60 60" style={{margin:"0 auto 20px"}}><circle cx="22" cy="30" r="14" fill={C.green}/><circle cx="38" cy="30" r="14" fill={C.pink}/><circle cx="30" cy="30" r="6" fill={C.bg}/></svg>
+              <h2 style={{fontSize:28,fontWeight:700,color:C.white,marginBottom:8,lineHeight:1.25}}>{t.ch2a}{" "}<span style={{fontFamily:"'Instrument Serif',serif",fontStyle:"italic",fontWeight:400,color:C.green}}>{t.ch2b}</span></h2>
+              <p style={{fontSize:14,color:C.textLight,maxWidth:360,margin:"0 auto 28px"}}>{t.cp}</p>
+              <B text={t.cbtn} dark/>
+              <p style={{fontSize:11,color:C.dim,marginTop:12}}>{t.csub2}</p>
+            </FI>
+          </div>
+        </section>
+
+        {/* FOOTER */}
+        <footer style={{padding:"28px 20px",textAlign:"center",backgroundColor:C.cream,borderTop:`1px solid ${C.border}`}}>
+          <Logo/>
+          <p style={{fontSize:11,color:C.dim,marginTop:10}}>Miami, FL · <a href="mailto:hello@lummacreative.com" style={{color:C.dim,textDecoration:"none"}}>hello@lummacreative.com</a></p>
+          <div style={{display:"flex",justifyContent:"center",gap:16,marginTop:12}}>
+            <a href="https://www.instagram.com/lummastudio_?igsh=MTRxaDhvemtrOWk0Yw%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" style={{fontSize:12,fontWeight:600,color:C.textMid,textDecoration:"none",padding:"8px 16px",borderRadius:20,border:`1px solid ${C.border}`,backgroundColor:C.white}}>Instagram</a>
+            <a href="https://wa.me/message/SZ5TPQ7ZBJ6TL1" target="_blank" rel="noopener noreferrer" style={{fontSize:12,fontWeight:600,color:C.white,textDecoration:"none",padding:"8px 16px",borderRadius:20,backgroundColor:"#25D366",border:"none"}}>WhatsApp</a>
+          </div>
+          <p style={{fontSize:10,color:C.dim,marginTop:16}}>© 2026 Lumma Studio. All rights reserved.</p>
+        </footer>
+
+      </div>
+    </>
+  );
+}
